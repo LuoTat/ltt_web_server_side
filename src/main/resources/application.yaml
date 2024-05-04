@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ltt_web_server_side
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/WebSQL
+    username: root
+    password: Ltt20040210
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+aliyun:
+  oss:
+    endpoint: https://oss-cn-qingdao.aliyuncs.com
+    accessKeyId: LTAI5tAemM2Pk9TrEgTtfziS
+    accessKeySecret: 3ogn6m4j6qunyEZKatBt6GqWy1Hhnl
+    bucketName: ltt-image-service

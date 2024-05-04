@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luotat.mapper.ClsMapper">
+    <update id="update">
+        update Class
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="room != null and room != ''">
+                room = #{room},
+            </if>
+            <if test="teacher != null and teacher != ''">
+                teacher = #{teacher},
+            </if>
+            <if test="openTime != null">
+                open_time = #{openTime},
+            </if>
+            <if test="closeTime != null">
+                close_time = #{closeTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="list" resultType="com.luotat.POJO.Cls">
+        select id, name, room, teacher, open_time, close_time, create_time
+        from Class
+        <where>
+            <if test="name != null and name != ''">
+                name like concat('%', #{name}, '%')
+            </if>
+            <if test="begin != null and end != null">
+                and close_time between #{begin} and #{end}
+            </if>
+        </where>
+        order by open_time DESC
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luotat.mapper.SchMapper">
+    <update id="update">
+        update Schedule
+        <set>
+            <if test="courseId != null">
+                course_id = #{courseId},
+            </if>
+            <if test="empId != null">
+                emp_id = #{empId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="list" resultType="com.luotat.POJO.Sch">
+        select id, course_id, emp_id, create_time
+        from Schedule
+        <where>
+            <if test="courseId != null ">
+                course_id = #{courseId}
+            </if>
+            <if test="empId != null">
+                and emp_id = #{empId}
+            </if>
+        </where>
+        order by create_time DESC
+    </select>
+</mapper>
