@@ -4,6 +4,7 @@ import com.luotat.POJO.Dpt;
 import com.luotat.Result.Result;
 import com.luotat.service.DptService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,8 +35,15 @@ public class DptController
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable("id") Integer id)
     {
-        dptService.delete(id);
-        return Result.success("部门删除成功");
+        try
+        {
+            dptService.delete(id);
+            return Result.success("部门删除成功");
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            return Result.error("该部门有员工，无法删除");
+        }
     }
 
     //修改部门

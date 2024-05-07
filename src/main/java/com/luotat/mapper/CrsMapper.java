@@ -30,14 +30,12 @@ public interface CrsMapper
             "where id = #{id}")
     void delete(Integer id);
 
-
     /**
      * 根据id修改课程信息
      *
      * @param crs 课程对象
      */
     void update(Crs crs);
-
 
     /**
      * 根据id查询课程信息
@@ -48,7 +46,6 @@ public interface CrsMapper
             "from Course " +
             "where id = #{id}")
     Crs getById(Integer id);
-
 
     /**
      * 条件查询课程

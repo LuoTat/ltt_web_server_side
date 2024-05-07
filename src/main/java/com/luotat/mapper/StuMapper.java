@@ -65,7 +65,6 @@ public interface StuMapper
             "where id = #{id}")
     Stu getById(Integer id);
 
-
     /**
      * 条件查询学生
      *

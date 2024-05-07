@@ -5,6 +5,7 @@ import com.luotat.POJO.PageBean;
 import com.luotat.Result.Result;
 import com.luotat.service.ClsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +38,15 @@ public class ClsController
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable("id") Integer id)
     {
-        clsService.delete(id);
-        return Result.success("删除班级成功");
+        try
+        {
+            clsService.delete(id);
+            return Result.success("删除班级成功");
+        }
+        catch (DataIntegrityViolationException e)
+        {
+            return Result.error("该班级有课程或学生，不能删除");
+        }
     }
 
     //修改班级

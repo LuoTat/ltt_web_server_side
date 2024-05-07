@@ -31,14 +31,12 @@ public interface ClsMapper
             "where id = #{id}")
     void delete(Integer id);
 
-
     /**
      * 根据id修改班级信息
      *
      * @param cls 班级对象
      */
     void update(Cls cls);
-
 
     /**
      * 根据id查询班级信息
@@ -49,7 +47,6 @@ public interface ClsMapper
             "from Class " +
             "where id = #{id}")
     Cls getById(Integer id);
-
 
     /**
      * 条件查询班级
